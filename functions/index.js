@@ -5,10 +5,11 @@ import express from 'express';
 import cors from 'cors';
 import { addRestaurants, getRestaurants } from "./src/restaurants.js"
 
+// import dbconnect from './src/dbconect.js';
 
 // const client = new MongoClient(uri)
 
-
+// const collection = dbconnect()
 
 const app = express();
 app.use(cors());
@@ -25,7 +26,7 @@ app.get("/getrestaurants", getRestaurants);
 app.post('addrestaurants', addRestaurants);
 
 
-app.get('/test', (req, res) =>
+app.get('/getall', (req, res) =>
   res.send({ success: true, message: 'API is working!' })
 );
 
