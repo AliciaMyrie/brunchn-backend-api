@@ -8,4 +8,4 @@ const collection = db.collection ("Restaurants")
 return collection
 }
 
-export default dbconnect()
+// export default dbconnect()
