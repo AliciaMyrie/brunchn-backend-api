@@ -23,10 +23,10 @@ app.use(express.json());
 
 app.get("/getrestaurants", getRestaurants);
 
-app.post('addrestaurants', addRestaurants);
+app.post("/addrestaurants", addRestaurants);
 
 
-app.get('/getall', (req, res) =>
+app.get("/getall", (req, res) =>
   res.send({ success: true, message: 'API is working!' })
 );
 
