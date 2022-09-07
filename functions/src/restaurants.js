@@ -20,12 +20,12 @@ export const addRestaurants = async (req, res) => {
 };
 
 
-// export const addLike = async (req, res) => {
-//     const { likes } = req.body
-//    const result = await restaurantCollection.findOneAndUpdate(
-//     {_id: new ObjectId (req.params.id)},
-//     { $inc: { Likes: likes }})
-//   res.send({ result });
-// };
+export const addLike = async (req, res) => {
+    const { likes } = req.body
+   const result = await restaurantCollection.findOneAndUpdate(
+    {_id: new ObjectId (req.params.id)},
+    { $inc: { Likes: likes }})
+  res.send({ result });
+};
 
 
