@@ -12,10 +12,10 @@ async function connectToMongo() {
 export const getRestaurants = async (req, res) => {
   const restaurantCollection = await connectToMongo();
   restaurantCollection.find({}).toArray((err, restaurants) => {
-    if (err){
-      console.log(err)
+    if (err) {
+      console.log(err);
     }
-    console.log(restaurants)
+    console.log(restaurants);
     res.send(restaurants);
   });
 };
@@ -27,7 +27,7 @@ export const addRestaurants = async (req, res) => {
   res.send({ 'Restaurant was added': true });
 };
 
-export const addLike = async  (req, res) => {
+export const addLike = async (req, res) => {
   const restaurantCollection = await connectToMongo();
   // const { likes } = req.body;
   // restaurantCollection
@@ -39,12 +39,13 @@ export const addLike = async  (req, res) => {
   //      res.status(201).json(result );
   //   })
 
+  const upddateResults = await restaurantCollection.findOneAndUpdate(
+    { _id: new ObjectId(req.params.id) },
+    { $inc: { likes: 1 } }
+  );
 
-    const upddateResults = await restaurantCollection.findOneAndUpdate(
-      { _id: new ObjectId(req.params.id) },
-      { $inc: { likes: 1 } })
-
-    const AllRestauntsNowWithCoolLikes =  await restaurantCollection.find({_id: req.params.id}).toArray()
-    res.status(201).json(AllRestauntsNowWithCoolLikes );
-
+  const AllRestauntsNowWithCoolLikes = await restaurantCollection
+    .find({ _id: req.params.id })
+    .toArray();
+  res.status(201).json(AllRestauntsNowWithCoolLikes);
 };
